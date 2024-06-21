@@ -1,3 +1,0 @@
-test test test 
-A A A
-B B B

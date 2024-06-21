@@ -1,2 +1,2 @@
 # ConvCoTM
-VHDL code and C-program for an FPGA implementing a Convolutional Coalesced Tsetlin Machine-based Image Classification Accelerator with On-Device Training
+VHDL code and C-program for an FPGA implementation of a Convolutional Coalesced Tsetlin Machine (ConvCoTM)-based Image Classification Accelerator with On-Device Training

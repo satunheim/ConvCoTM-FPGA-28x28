@@ -3,3 +3,7 @@ VHDL code and C-program for an FPGA implementation of a Convolutional Coalesced 
 
 The design has been implemented and verified on a Xilinx ZCU104 FPGA development board.
 
+The design is described in the paper: TBD
+DOI	: 
+Weblink	:
+

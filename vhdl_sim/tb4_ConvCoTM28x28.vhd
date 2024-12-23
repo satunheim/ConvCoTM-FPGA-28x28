@@ -128,7 +128,7 @@ begin
         -- Map i_config signals:
         --    w_TA_high_threshold         <= i_config(31 downto 24); -- Here: UNSIGNED. 
         --    w_T_hyper                   <= i_config(23 downto 16); -- UNSIGNED. 
-        --    w_W_Threshold_Weight_High   <= i_config(15 downto 8);  -- UNSIGNED. The MAX weight threshold is set independently of T (but should normally equal T!?)
+        --    w_W_Threshold_Weight_High   <= i_config(15 downto 8);  -- UNSIGNED. 
         --    w_s_hyper                   <= i_config(7 downto 4);   -- UNSIGNED.
         --    w_config(3)                 <= i_config(3); Not used. 
         --    w_test                      <= i_config(2 downto 0);
@@ -163,8 +163,7 @@ begin
     process
           
           --file text_file : text open read_mode is "C:\Users\satun\OneDrive\Dokumenter\fg_ConvCoTM28x28\MNISTdata\MNIST_train_60_ksamples.txt";
-          file text_file : text open read_mode is "C:\Users\satun\OneDrive\Dokumenter\fg_ConvCoTM28x28\MNISTdata\MNIST_train_100_samples_repeated_20.txt";
-          
+          file text_file : text open read_mode is "C:\Users\satun\OneDrive\Dokumenter\fg_ConvCoTM28x28\MNISTdata\MNIST_train_100_samples_repeated_20.txt";    
           
           variable text_line : line;
           variable var_imagedata : std_logic_vector(7 downto 0);

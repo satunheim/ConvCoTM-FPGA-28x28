@@ -1,3 +1,20 @@
+-----------------------------------------------
+--
+-- This repository includes VHDL code for an FPGA implementation of a Convolutional Coalesced 
+-- Tsetlin Machine (ConvCoTM)-based Image Classification Accelerator with On-Device Training.
+-- The design is described in the paper "Tsetlin Machine-Based Image Classification FPGA Accelerator With On-Device Training" 
+-- in IEEE Transactions on Circuits and Systems I: Regular Papers: https://ieeexplore.ieee.org/document/10812055.
+-- 
+-- This testbench is used to thest the following:
+-- * AXI interface and image data transfer
+-- * TA and weight initialization
+-- * Training  
+-- * Testing 
+--
+-- As full simulation of training over several epochs is very demanding and time consuming, a simplified dataset 
+-- "MNIST_train_100_samples_repeated_20.txt" is utilized. Here 100 training samples are included and repeated 20 times. 
+--------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_misc.all;  
@@ -7,12 +24,6 @@ use work.SETTINGS_ConvCoTM.all;
 use work.MainFSMDefinitions.all;
 use std.textio.all;     
 use IEEE.std_logic_textio.all; 
-
--- This testbench is used to thest the following:
--- * AXI interface and image data transfer
--- TA and weight initialization
--- Training  
--- Testing 
 
 entity tb4_ConvCoTM28x28 is
 end tb4_ConvCoTM28x28;
@@ -173,8 +184,7 @@ begin
           variable text_line2 : line;
           variable var_imagedata2 : std_logic_vector(7 downto 0);
           
-          
-          
+                
     begin
 
             w_i_data_valid <='0';

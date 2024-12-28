@@ -5,7 +5,7 @@ package FSM_Moving_Window_definitions_28x28 is
 
     constant SWIDTH_Moving_Window: Integer := 20; 
     -- (=(28-10)/1 +1 = 18+1=19=Bx
-    -- We need one more state than Bx!? I.e. 20 (numbered from 0 to 19)
+    -- We need one more state than Bx.
     
     -- The states are one-hot encoded:
     constant MWstate0     : std_logic_vector(SWIDTH_Moving_Window-1 downto 0)   := "0000" & "00000000" & "00000001";
@@ -40,7 +40,7 @@ package FSM_Moving_Window_definitions_32x32 is
 
     constant SWIDTH_Moving_Window: Integer := 30; 
     -- (=(32-3)/1 +1 = 29+1=30
-    -- We need one more state than Bx!? I.e. 31 (numbered from 0 to 30)
+    -- We need one more state than Bx.
     
     -- The states are one-hot encoded:
     constant MWstate0     : std_logic_vector(SWIDTH_Moving_Window-1 downto 0)   := "0000000" & "00000000" & "00000000" & "00000001";

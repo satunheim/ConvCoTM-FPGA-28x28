@@ -48,7 +48,7 @@ architecture test of tb4_ConvCoTM28x28 is
     signal w_TA_high_threshold  : std_logic_vector(7 downto 0);
     signal w_T_hyper            : std_logic_vector(7 downto 0);
     signal w_s_hyper            : std_logic_vector(3 downto 0);
-    signal w_length_LFSRs       : std_logic;
+    --signal w_length_LFSRs       : std_logic;
     signal w_weightMAX          : std_logic_vector(7 downto 0);
 
     -- OUTPUTS:
@@ -151,7 +151,7 @@ begin
         w_T_hyper               <= "1101" & "0000"; -- UNSIGNED format. 
         w_weightMAX             <= "0110" & "0000"; -- UNSIGNED format. 0x60 = dec 96 = 0.75*128 (number of clauses)
         w_s_hyper               <= "1000";
-        w_length_LFSRs          <= '1';
+--        w_length_LFSRs          <= '1';
         w_test                  <= "001";
         w_lengthLFSRs           <= "111";
 

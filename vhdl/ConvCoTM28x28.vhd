@@ -1,3 +1,12 @@
+-----------------------------------------------
+--
+-- This is the VHDL top module for an FPGA implementation of a Convolutional Coalesced 
+-- Tsetlin Machine (ConvCoTM)-based Image Classification Accelerator with On-Device Training.
+-- The design is described in the paper "Tsetlin Machine-Based Image Classification FPGA Accelerator With On-Device Training" 
+-- in IEEE Transactions on Circuits and Systems I: Regular Papers: https://ieeexplore.ieee.org/document/10812055.
+--
+--------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_misc.all;

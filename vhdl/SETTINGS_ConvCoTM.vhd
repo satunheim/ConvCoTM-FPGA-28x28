@@ -3,8 +3,8 @@
 -- Literals = Features & not(Features)  (defined in component AllClauses)
 
 -- States: 
--- 1 to N=> Exclude 
--- N+1 to 2N => Include
+-- 0 to N-1 => Exclude 
+-- N to 2N-1 => Include
  
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -81,7 +81,7 @@ package SETTINGS_ConvCoTM is
 	constant NBsum: Integer :=NBitsIW+NBitsClauseAddr;		
 	-- Number of bits in sum outputs of the first column of adders for the clauses
 	-- The theoretical maximum class sum is NClauses*Max(weight)
-	-- For 128 clauses and 9 bit weights (incl singn bit) this equals:
+	-- For 128 clauses and 9 bit weights (incl sign bit) this equals:
 	-- 32640. This is "0111111110000000" in binary format.
 	-- With 15 bits just for the unsigned part there should be sufficient range. 
 	-- NBitsIW+NBitsClauseAddr = 16 bits in this case. 

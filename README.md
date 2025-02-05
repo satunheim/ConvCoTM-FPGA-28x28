@@ -9,4 +9,4 @@ In https://doi.org/10.48550/arXiv.2108.07594 the Coalesced Tsetlin Machine (CoTM
 
 The MNIST data samples included in this repository, are booleanized by simple thresholding. I.e., pixel values above 75 are set to 1 and to 0 otherwise. The original MNIST dataset is found at https://yann.lecun.com/exdb/mnist/.
 
-The coding style applied for the VHDL designs is based on Appendix A in <i>Digital Design Using VHDL: A Systems Approach</i>, Dally William J. Harting R. Curtis Aamodt Tor M., Cambrige University Press, 2016 . In particular, the principle that <i>"All state should be in explicitly declared registers"</i> has been carefully followed.
+The coding style applied for the VHDL designs is based on Appendix A in <i>Digital Design Using VHDL: A Systems Approach</i>, Dally William J. Harting R. Curtis Aamodt Tor M., Cambrige University Press, 2016. In particular, the principle that <i>"All state should be in explicitly declared registers"</i> has been carefully followed.

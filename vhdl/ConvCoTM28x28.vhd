@@ -18,11 +18,12 @@ use work.MainFSMDefinitions.all;
 
 entity ConvCoTM28x28 is
     Port (
-            clk                         : in STD_LOGIC;
+            clk                           : in std_logic;
             
-            i_ctrl                      : in std_logic_vector(7 downto 0);
+            i_ctrl                        : in std_logic_vector(7 downto 0);
 
-            -- Logical mapping of i_ctrl signals to single control signals: See also the signal declaration within this top level module.
+            -- Logical mapping of i_ctrl signals to single control signals: See also the 
+            -- signal declaration within this top level module.
             --    i_rst                   :  i_ctrl(0); 
             --    i_start                 :  i_ctrl(1);
             --    i_learn                 :  i_ctrl(2);
@@ -34,34 +35,42 @@ entity ConvCoTM28x28 is
 
             
             -- Input registers from Processing System:
-            i_config                    : in std_logic_vector(31 downto 0);
-            i_lengthLFSRs               : in std_logic_vector(2 downto 0);
+            i_config                      : in std_logic_vector(31 downto 0);
+            i_lengthLFSRs                 : in std_logic_vector(2 downto 0);
             
             -- AXI interface:
-            axi_clk                     : in std_logic;
-            axi_reset_n                 : in std_logic;
+            axi_clk                       : in std_logic;
+            axi_reset_n                   : in std_logic;
              
             -- Slave interface:
-            i_data_valid                : in std_logic;
-            i_data                      : in std_logic_vector(7 downto 0);
-            o_data_ready                : out std_logic;
-             
-            -- Interrupt:
-            o_intr                      : out std_logic; 
+            i_data_valid                  : in std_logic;
+            i_data                        : in std_logic_vector(7 downto 0);
+            o_data_ready                  : out std_logic; -- hardcoded to logical 1. 
             
-            --------------------------------------
-            o_correctPrediction        : out std_logic;
-            o_Result                   : out std_logic_vector(7 downto 0);  
-            o_ImageLabel               : out std_logic_vector(3 downto 0);  
-            o_intr2                    : out std_logic; --   
+	    ----------------------------------------------------
+	    -- Outputs:
+
+            o_intr                        : out std_logic; -- For monitoring during simulations.  
+
+	        o_correctPrediction           : out std_logic; -- For monitoring during simulations.
+
+            o_Result                      : out std_logic_vector(7 downto 0); 
+                                            -- Fed to FPGA system processor.
+
+            o_ImageLabel                  : out std_logic_vector(3 downto 0); 
+                                            -- For monitoring during simulations.
+
+            o_intr2                       : out std_logic; -- For monitoring during simulations.  
             ----
-            o_LED1_InitialState        : out STD_LOGIC;
-            o_LED2_FinishedInference   : out STD_LOGIC;
-            o_LED3_FinishedLearn       : out STD_LOGIC;
+            o_LED1_InitialState           : out STD_LOGIC; -- LED indicating the main FSM is in "InitialState".
+            o_LED2_FinishedInference      : out STD_LOGIC; -- LED indicating the main FSM is in "FinishedInference".
+            o_LED3_FinishedLearn          : out STD_LOGIC; -- LED indicating the main FSM is in "FinishedLearn".
             
-            o_statereg                  : out std_logic_vector(7 downto 0);  
+            o_statereg                    : out std_logic_vector(7 downto 0); 
+                                            -- Fed to FPGA system processor. 
             
-            o_blinkout : out STD_LOGIC
+            o_blinkout 			          : out STD_LOGIC 
+                                            -- Output from blinker. For diagnostics of the FPGA programming.
             );
 end ConvCoTM28x28;
 

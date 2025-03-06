@@ -29,7 +29,7 @@ package MainFSMDefinitions is
     constant FinishedTraining        	            : std_logic_vector(SWIDTH-1 downto 0)   := "0000" & "1000000" & "000" & "000000";
    
     -- The following states are defined but not used in the implementation. They are reserved for future use 
-    -- for loading a model (TA action and weights) from the system processsor.
+    -- for loading a model (TA actions and weights) from the system processsor.
     constant Phase0LoadMODEL                        : std_logic_vector(SWIDTH-1 downto 0)   := "0001" & "0000000" & "000" & "000000";
     constant LoadMODEL                              : std_logic_vector(SWIDTH-1 downto 0)   := "0010" & "0000000" & "000" & "000000";
     constant Phase1LoadMODEL                        : std_logic_vector(SWIDTH-1 downto 0)   := "0100" & "0000000" & "000" & "000000";

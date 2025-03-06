@@ -22,7 +22,7 @@ entity TsetlinAutomata is
             i_decr                          : in std_logic_vector(2*FSize-1 downto 0);
             i_FSMstate                      : in std_logic_vector(SWIDTH-1 downto 0);
             i_TA_high_threshold             : in std_logic_vector(7 downto 0); -- -- Here: UNSIGNED. 
-            o_includes_per_clause           : out std_logic_vector(2*FSize-1 downto 0); -- This signal is the "current" state of the TA MSBs. 
+            o_includes_per_clause           : out std_logic_vector(2*FSize-1 downto 0); -- This signal is the "current" state of the TA MSBs. A logical 1 implies "INCLUDE".
             o_includes_per_clause_IE_update : out std_logic_vector(2*FSize-1 downto 0)  
                                           -- This signal is the "next" state of the TAs for the given clause. 
                                           -- It is fed to the IncludeExclude register and stored there.
@@ -60,7 +60,10 @@ architecture RTL of TsetlinAutomata is
 
 begin
 
-  w_resetvector        <= "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111";        
+  w_resetvector        <= "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111" & "111111111";    
+  -- When reset, all TAs are set to "111111111", i.e., state -1. 
+  -- State 0 and above imply INCLUDE. 
+  -- The TA number format is two's representation.    
 
   w_TA_high_threshold  <= signed('0' & i_TA_high_threshold);
   
@@ -146,6 +149,8 @@ begin
        w_includes_per_clause(K) <= not(w_dob(K)(71) & w_dob(K)(62) & w_dob(K)(53) & w_dob(K)(44) & w_dob(K)(35) & w_dob(K)(26) & w_dob(K)(17) & w_dob(K)(8));
         -- The MSB of each TA is inverted so we get a '1' for those literals that should be included.
         -- 9 state bits per TA
+        -- State 0 and above imply INCLUDE. 
+        -- The TA number format is two's representation.  
         
        w_includes_per_clause_IE_update(K) <= not(w_TA(K)(71) & w_TA(K)(62) & w_TA(K)(53) & w_TA(K)(44) & w_TA(K)(35) & w_TA(K)(26) & w_TA(K)(17) & w_TA(K)(8));
       

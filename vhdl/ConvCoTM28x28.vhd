@@ -152,8 +152,8 @@ architecture RTL of ConvCoTM28x28 is
     
         -- For OutputWeights:
     signal w_LoadIndividualWIE_model : std_logic_vector(NClauses-1 downto 0); 
-    signal w_Class                  : std_logic_vector(3 downto 0);  -- From TrainCoTMM: -- Outputs Target Class when this is trained, and the Negative Target Class thereafter
-    signal w_W_Threshold_Weight_High: std_logic_vector(NBitsIW-2 downto 0); -- 1 bit less than NBitsIW due unsigned format.
+    signal w_Class                  : std_logic_vector(3 downto 0);  -- From TrainCoTMM: -- Outputs Target Class when this class is trained, and the Negative Target Class thereafter.
+    signal w_W_Threshold_Weight_High: std_logic_vector(NBitsIW-2 downto 0); -- 1 bit less than NBitsIW due to unsigned format.
     
     signal w_ModelWeightClass0 : std_logic_vector(NBitsIW-1 downto 0);
     signal w_ModelWeightClass1 : std_logic_vector(NBitsIW-1 downto 0);
@@ -278,7 +278,7 @@ begin
            i_learn                      => w_learn,
            i_enLFSRs_init               => w_enLFSRs_init,
            i_Initialize                 => w_initialize,   
-           i_LoadModel                  => '0', --w_LoadModel, -- Not implemented 
+           i_LoadModel                  => '0', -- w_LoadModel, -- The model load functionality is not implemented 
            i_FinishedLoadModel          => '0', -- Not implemented      
            i_test                       => w_test, 
            
@@ -398,7 +398,7 @@ begin
             o_InclExcl              => w_incexcl_signals
             );  
      
-     Module_MODEL: entity work.Model_pretrained(behavioral) 
+     Module_MODEL: entity work.Model_pretrained(behavioral) -- Placeholder module. The model load functionality is not implemented.
         port map(
             i_clk               => clk,
             i_rst               => w_rst,

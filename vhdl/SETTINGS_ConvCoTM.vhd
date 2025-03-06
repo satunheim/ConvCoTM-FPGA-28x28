@@ -39,34 +39,14 @@ package SETTINGS_ConvCoTM is
 	-- Number of bits used for the Patch Address. 
 	
 	constant FSize: Integer := WSize*WSize*pixelResolution+(ImageSize-WSize)+(ImageSize-WSize);
-	--constant FSize: Integer := WSize*WSize*pixelResolution+Bx+By; 	 		
-	-- Feature vector size per patch is WSize x WSize.
+	-- FSize is the number of features per patch.
+	-- The terms (ImageSize-WSize)+(ImageSize-WSize) represent the number of bits for position thermometer encoding in the X and Y directions.
 	
-	--constant c_T_hyper : Integer :=625;
-	--constant c_T_hyper : Integer :=96;
-	
-	--constant c_s_hyper : Integer :=10;
-	--constant c_s_hyper : Integer :=8;
-
-	--constant NClauses: Integer := 512;	
 	constant NClauses: Integer := 128;	
-	-- Number of Clauses per Tsetlin Automata (TA)  
+	-- Number of Clauses
 	
 	constant NBitsClauseAddr: Integer := 7;
 	-- Number of bits used for the Clause Address. MUST equal 2**NBitsClauseAddr=NClauses
-	
-	--constant NsubClauses: Integer := 8;	
-	-- Number of Clauses grouped together as a submodule. NsubClauses must be a factor of NClauses.
-	
-	--constant NmodulesClauses: Integer := NClauses/NsubClauses;	
-	-- Number of modules each with NsubClauses clauses.
-
-	-- constant NTAbits: Integer := 10;	The design is hardcoded to 9 state bits per TA.
-	-- Number of State bits per TA
-
-	-- constant NBitsEval: Integer := 16;	
-	-- Not needed.
-	-- Number of bits used in the counters in the Evaluation module. Not needed.
 
 	constant Pcounterbits: Integer := 9;	
 	-- Number of bits in the P-counter (patch counter).
@@ -85,9 +65,6 @@ package SETTINGS_ConvCoTM is
 	-- 32640. This is "0111111110000000" in binary format.
 	-- With 15 bits just for the unsigned part there should be sufficient range. 
 	-- NBitsIW+NBitsClauseAddr = 16 bits in this case. 
-		
---	constant c_W_HighThreshold : signed (NBitsIW-1 downto 0) := (NBitsIW-1 => '0', 0 => '0', others => '1'); -- i.e. "011....11110"  -- Should be programmable?
---	constant c_W_LowThreshold  : signed (NBitsIW-1 downto 0) := (NBitsIW-1 => '1', 0 => '1', others => '0'); -- i.e. "100...000001"  -- Should be programmable?
     
     type clause_weights is array (0 to NClauses-1) of signed(NBitsIW-1 downto 0);
     
@@ -96,21 +73,12 @@ package SETTINGS_ConvCoTM is
     type array4ofClauseWeights is array (0 to 3) of signed(NBitsIW-1 downto 0);
 
     type include_exclude_signals is array (0 to NClauses-1) of std_logic_vector(2*FSize-1 downto 0);
-      
-    -- Image data and window related:
-     -- subtype imagebitrow is std_logic_vector(0 to WSize+ImageSize-1); 
-     -- For booleanized images.
-     
-    -- type pixelrow is array (0 to ImageSize-1) of std_logic_vector(pixelResolution-1 downto 0); 
-    -- Only relevant for pixels with more than one bit resolution, i.e. non-booleanized images
-    
     
     constant NLFSRs: Integer := 2*FSize+1;	
 	-- Number of LFSRs. Should be set to MAX(2*FSize+1, 2*NClauses)
 	
 	type LFSRrandomnumbers is array (0 to NLFSRs-1) of std_logic_vector(23 downto 0); 
     --type LFSRrandomnumbers is array (0 to NLFSRs-1) of std_logic_vector(23 downto 0); 
-    -- Awaits to fixate the resolution here. Possibly e.g. 16 bit resolution is sufficient.
     
     constant c_AdderPipelineStages : Integer := 3;
     
@@ -119,16 +87,7 @@ package SETTINGS_ConvCoTM is
     type array16ofPatchAddresses is array (0 to 15) of std_logic_vector(8 downto 0);
     type array4ofPatchAddresses is array (0 to 3) of std_logic_vector(8 downto 0);
     
---    type arrayOfPatchRegisters is array (0 to NClauses-1) of std_logic_vector(FSize-1 downto 0);
---    type array32ofPatchRegisters is array (0 to 31) of std_logic_vector(FSize-1 downto 0);
---    type array16ofPatchRegisters is array (0 to 15) of std_logic_vector(FSize-1 downto 0);
-    
     type arrayOfPatchCounters is array (0 to NClauses-1) of std_logic_vector(8 downto 0);
---    type array32ofPatchCounters  is array (0 to 31) of std_logic_vector(8 downto 0);
---    type array16ofPatchCounters  is array (0 to 15) of std_logic_vector(8 downto 0);
-    
-    --subtype featurevector is std_logic_vector(FSize-1 downto 0); 
-    --type patchregArray is array (0 to Nclauses-1) of featurevector;
     
     type updateflagsPerClause is array (0 to NClauses-1) of std_logic;
     

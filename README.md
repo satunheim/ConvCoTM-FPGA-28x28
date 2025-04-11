@@ -9,7 +9,7 @@ IEEE Transactions on Circuits and Systems I: Regular Papers: https://ieeexplore.
 
 In https://doi.org/10.48550/arXiv.2108.07594 the Coalesced Tsetlin Machine (CoTM) is presented.
 
-The MNIST data samples included in this repository, are booleanized by simple thresholding: Pixel values above 75 are set to 1, and to 0 otherwise. The original MNIST dataset is found at https://yann.lecun.com/exdb/mnist/.
+The MNIST data samples included in this repository, are booleanized by simple thresholding: Pixel values above 75 are set to 1, and to 0 otherwise. The original MNIST dataset is found at https://yann.lecun.com/exdb/mnist/. Each booleanized MNIST image requires 98 bytes plus one byte for the label. In addition, 29 bytes of value 0 have been added to each sample, totalling 128 bytes per image, which is necessary for the reading of image data via the DMA for this FPGA configuration.
 
 The VHDL coding style is based on Appendix A in <i>Digital Design Using VHDL: A Systems Approach</i>, Dally William J. Harting R. Curtis Aamodt Tor M., Cambrige University Press, 2016. In particular, the principle that <i>"All state should be in explicitly declared registers"</i> has been carefully followed.
 

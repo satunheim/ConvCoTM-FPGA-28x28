@@ -10,8 +10,8 @@
 #include "xil_io.h"
 #include<math.h>
 
-#include "MNISTtrainDataSingleArray.h"
-#include "MNISTtestDataSingleArray.h"
+#include "MNIST_test_charfile_128bytes_per_sample.h"
+#include "MNIST_train_charfile_128bytes_per_sample.h"
 
 u32 checkHalted(u32 baseAddress, u32 offset);
 u32 checkIdle(u32 baseAddress, u32 offset);
@@ -378,7 +378,7 @@ void TrainCoTM(void)
 
 				XGpio_DiscreteWrite(&MainControl,1,6);
 
-				imagebyteindex = trainingsampleindex[sample]*99;
+				imagebyteindex = trainingsampleindex[sample]*128;
 
 				statusDMA = XAxiDma_SimpleTransfer(&myDma, (u32)&MNISTtrainData[imagebyteindex], 99, XAXIDMA_DMA_TO_DEVICE);
 
@@ -455,7 +455,7 @@ void TestCoTM(void)
 
 		XGpio_DiscreteWrite(&MainControl,1,2);
 
-	    statusDMA = XAxiDma_SimpleTransfer(&myDma, (u32)&MNISTtestData[sample*99], 99, XAXIDMA_DMA_TO_DEVICE);
+	    statusDMA = XAxiDma_SimpleTransfer(&myDma, (u32)&MNISTtestData[sample*128], 99, XAXIDMA_DMA_TO_DEVICE);
 		if(statusDMA != XST_SUCCESS){
 			printf("DMA transfer failed, test sample in for loop\n");
 			printf("Image index during fail: %ld\n", sample);
